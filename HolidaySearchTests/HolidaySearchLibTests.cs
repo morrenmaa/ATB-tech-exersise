@@ -68,7 +68,6 @@ public class HolidaySearchLibTests
     {
         var request = new HolidaySearchRequest
         {
-            To = "AGP",
             DepartureDate = new DateTime(2023, 07, 01),
             FlightData = ConvertFromJsonFile<List<Flight>>("TestData/Flights.json"),
             HotelData = ConvertFromJsonFile<List<Hotel>>("TestData/Hotels.json")
@@ -79,8 +78,25 @@ public class HolidaySearchLibTests
             f => Assert.Equal(new DateTime(2023, 07, 01), f.DepartureDate),
             f => Assert.Equal(new DateTime(2023, 07, 01), f.DepartureDate),
             f => Assert.Equal(new DateTime(2023, 07, 01), f.DepartureDate),
-            f => Assert.Equal(new DateTime(2023, 10, 25), f.DepartureDate)
+            f => Assert.Equal(new DateTime(2023, 07, 01), f.DepartureDate),
+            f => Assert.Equal(new DateTime(2023, 10, 25), f.DepartureDate),
+            f => Assert.Equal(new DateTime(2023, 11, 10), f.DepartureDate)
             );
+    }
+
+    [Fact]
+    public void WhenCallingSearchWithHolidayDuration_ReturnsListOfResultsEqualOrGreaterOfDuration()
+    {
+        var request = new HolidaySearchRequest
+        {
+            Duration = 11,
+            FlightData = ConvertFromJsonFile<List<Flight>>("TestData/Flights.json"),
+            HotelData = ConvertFromJsonFile<List<Hotel>>("TestData/Hotels.json")
+        };
+
+        var results = _sut.Search(request);
+        Assert.Equal(5, results.Hotels.Count);
+        Assert.Equal(11, results.Flights.Count);
     }
 
     private T ConvertFromJsonFile<T>(string filename)

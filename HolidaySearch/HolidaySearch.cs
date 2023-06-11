@@ -6,9 +6,11 @@ public class HolidaySearch : IHolidaySearch
     public HolidaySearchResponse Search(HolidaySearchRequest request)
     {
         var tripFilteringPipeline = new TripFilteringPipeline();
+        
         tripFilteringPipeline
         .Register(new ToAndFromFilter())
-        .Register(new DepartureDateFilter());
+        .Register(new DepartureDateFilter())
+        .Register(new DurationFilter());
 
         var result = tripFilteringPipeline.Process(request);
 
