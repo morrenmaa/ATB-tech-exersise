@@ -1,0 +1,99 @@
+[
+    {
+      "id": 1,
+      "airline": "First Class Air",
+      "from": "MAN",
+      "to": "TFS",
+      "price": 470,
+      "departure_date": "2023-07-01"
+    },
+    {
+      "id": 2,
+      "airline": "Oceanic Airlines",
+      "from": "MAN",
+      "to": "AGP",
+      "price": 245,
+      "departure_date": "2023-07-01"
+    },
+    {
+      "id": 3,
+      "airline": "Trans American Airlines",
+      "from": "MAN",
+      "to": "PMI",
+      "price": 170,
+      "departure_date": "2023-06-15"
+    },
+    {
+      "id": 4,
+      "airline": "Trans American Airlines",
+      "from": "LTN",
+      "to": "PMI",
+      "price": 153,
+      "departure_date": "2023-06-15"
+  
+    },
+    {
+      "id": 5,
+      "airline": "Fresh Airways",
+      "from": "MAN",
+      "to": "PMI",
+      "price": 130,
+      "departure_date": "2023-06-15"
+    },
+    {
+      "id": 6,
+      "airline": "Fresh Airways",
+      "from": "LGW",
+      "to": "PMI",
+      "price": 75,
+      "departure_date": "2023-06-15"
+    },
+    {
+      "id": 7,
+      "airline": "Trans American Airlines",
+      "from": "MAN",
+      "to": "LPA",
+      "price": 125,
+      "departure_date": "2022-11-10"
+    },
+    {
+      "id": 8,
+      "airline": "Fresh Airways",
+      "from": "MAN",
+      "to": "LPA",
+      "price": 175,
+      "departure_date": "2023-11-10"
+    },
+    {
+      "id": 9,
+      "airline": "Fresh Airways",
+      "from": "MAN",
+      "to": "AGP",
+      "price": 140,
+      "departure_date": "2023-04-11"
+    },
+    {
+      "id": 10,
+      "airline": "First Class Air",
+      "from": "LGW",
+      "to": "AGP",
+      "price": 225,
+      "departure_date": "2023-07-01"
+    },
+    {
+      "id": 11,
+      "airline": "First Class Air",
+      "from": "LGW",
+      "to": "AGP",
+      "price": 155,
+      "departure_date": "2023-07-01"
+    },
+    {
+      "id": 12,
+      "airline": "Trans American Airlines",
+      "from": "MAN",
+      "to": "AGP",
+      "price": 202,
+      "departure_date": "2023-10-25"
+    }
+]

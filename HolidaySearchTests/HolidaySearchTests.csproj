@@ -21,6 +21,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <ProjectReference Include="..\HolidaySearch\HolidaySearch.csproj" />
+    <None Update="TestData/Flights.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="TestData/Hotels.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
