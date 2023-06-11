@@ -41,6 +41,9 @@ public class HolidaySearchLibTests
         var results = _sut.Search(request);
         Assert.Equal(3, results.Flights.Count);
         Assert.Equal(4, results.Hotels.Count);
+        Assert.All(results.Hotels, h => h.LocalAirports.Contains("AGP"));
+        Assert.All(results.Flights, f => f.To.Equals("AGP"));
+        Assert.All(results.Flights, f => f.From.Equals("MAN"));
     }
 
     [Fact]
@@ -56,6 +59,8 @@ public class HolidaySearchLibTests
         var results = _sut.Search(request);
         Assert.Equal(5, results.Flights.Count);
         Assert.Equal(4, results.Hotels.Count);
+        Assert.All(results.Hotels, h => h.LocalAirports.Contains("AGP"));
+        Assert.All(results.Flights, f => f.To.Equals("AGP"));
     }
 
     private T ConvertFromJsonFile<T>(string filename)
