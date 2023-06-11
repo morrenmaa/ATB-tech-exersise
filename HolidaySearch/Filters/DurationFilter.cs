@@ -9,7 +9,7 @@ public class DurationFilter : IFilter<HolidaySearchRequest>
             return input;
         }
 
-        var remainingHotels = input.HotelData.Where(h => h.Nights >= input.Duration).OrderBy(h => h.Nights).ToList();
+        var remainingHotels = input.HotelData.Where(h => h.Nights == input.Duration).ToList();
         var remainingAirportNames = new List<string>();
 
         foreach(var hotel in remainingHotels)
