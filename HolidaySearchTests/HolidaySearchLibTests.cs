@@ -63,6 +63,26 @@ public class HolidaySearchLibTests
         Assert.All(results.Flights, f => f.To.Equals("AGP"));
     }
 
+    [Fact]
+    public void WhenCallingSearchWithDepartureDate_ReturnsListOfResultsSortedByDate()
+    {
+        var request = new HolidaySearchRequest
+        {
+            To = "AGP",
+            DepartureDate = new DateTime(2023, 07, 01),
+            FlightData = ConvertFromJsonFile<List<Flight>>("TestData/Flights.json"),
+            HotelData = ConvertFromJsonFile<List<Hotel>>("TestData/Hotels.json")
+        };
+
+        var results = _sut.Search(request);
+        Assert.Collection(results.Flights, 
+            f => Assert.Equal(new DateTime(2023, 07, 01), f.DepartureDate),
+            f => Assert.Equal(new DateTime(2023, 07, 01), f.DepartureDate),
+            f => Assert.Equal(new DateTime(2023, 07, 01), f.DepartureDate),
+            f => Assert.Equal(new DateTime(2023, 10, 25), f.DepartureDate)
+            );
+    }
+
     private T ConvertFromJsonFile<T>(string filename)
     {
         var options = new JsonSerializerOptions
