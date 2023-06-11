@@ -13,7 +13,7 @@ public class HolidaySearchLibTests
     }
 
     [Fact]
-    public void WhenCallingSearch_ReturnsEmptyListOfResults()
+    public void WhenCallingSearchWithoutAnySearchTerms_ReturnsAllResults()
     {
         var request = new HolidaySearchRequest
         {
@@ -23,7 +23,39 @@ public class HolidaySearchLibTests
 
         var results = _sut.Search(request);
 
-        Assert.Empty(results.Results);
+        Assert.Equal(13, results.Hotels.Count);
+        Assert.Equal(12, results.Flights.Count);
+    }
+
+    [Fact]
+    public void WhenCallingSearchWithFromAndTo_ReturnsListOfResultsMatchingSearchTerms()
+    {
+        var request = new HolidaySearchRequest
+        {
+            From = "MAN",
+            To = "AGP",
+            FlightData = ConvertFromJsonFile<List<Flight>>("TestData/Flights.json"),
+            HotelData = ConvertFromJsonFile<List<Hotel>>("TestData/Hotels.json")
+        };
+
+        var results = _sut.Search(request);
+        Assert.Equal(3, results.Flights.Count);
+        Assert.Equal(4, results.Hotels.Count);
+    }
+
+    [Fact]
+    public void WhenCallingSearchWithTo_ReturnsListOfResultsMatchingSearchTerms()
+    {
+        var request = new HolidaySearchRequest
+        {
+            To = "AGP",
+            FlightData = ConvertFromJsonFile<List<Flight>>("TestData/Flights.json"),
+            HotelData = ConvertFromJsonFile<List<Hotel>>("TestData/Hotels.json")
+        };
+
+        var results = _sut.Search(request);
+        Assert.Equal(5, results.Flights.Count);
+        Assert.Equal(4, results.Hotels.Count);
     }
 
     private T ConvertFromJsonFile<T>(string filename)

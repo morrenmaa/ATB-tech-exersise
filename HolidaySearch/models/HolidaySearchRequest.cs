@@ -1,6 +1,8 @@
 namespace HolidaySearchLib;
 public class HolidaySearchRequest
 {
-    public required List<Flight> FlightData;
-    public required List<Hotel> HotelData;
+    public string? From { get; set; }
+    public string? To { get; set; }
+    public required List<Flight> FlightData { get; set; }
+    public required List<Hotel> HotelData { get; set; }
 }
