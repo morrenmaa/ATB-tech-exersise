@@ -12,20 +12,25 @@ public class DepartureDateFilter : IFilter<HolidaySearchRequest>
 
         flightData = flightData.Where(flight => flight.DepartureDate == input.DepartureDate).ToList();
 
+        input.FlightData = flightData.ToList();
+        input.HotelData = FilterRemainingHotels(input.HotelData, flightData);
+
+        return input;
+
+    }
+
+    private static List<Hotel> FilterRemainingHotels(List<Hotel> hotels, List<Flight> flights)
+    {
         var remainingHotels = new List<Hotel>();
 
-        foreach(var hotel in input.HotelData)
+        foreach(var hotel in hotels)
         {
-            if(flightData.Any(flight => hotel.LocalAirports.Contains(flight.To)))
+            if(flights.Any(flight => hotel.LocalAirports.Contains(flight.To)))
             {
                 remainingHotels.Add(hotel);
             }
         }
 
-        input.FlightData = flightData.ToList();
-        input.HotelData = remainingHotels;
-
-        return input;
-
+        return remainingHotels;
     }
 }

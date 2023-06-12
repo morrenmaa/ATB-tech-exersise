@@ -10,9 +10,21 @@ public class DurationFilter : IFilter<HolidaySearchRequest>
         }
 
         var remainingHotels = input.HotelData.Where(h => h.Nights == input.Duration).ToList();
+
+        var remainingAirportNames = FilterRemainingAirportNames(remainingHotels);
+        var remainingFlights = input.FlightData.Where(flight => remainingAirportNames.Contains(flight.To)).ToList();
+
+        input.HotelData = remainingHotels;
+        input.FlightData = remainingFlights;
+
+        return input;
+    }
+
+    private static List<string> FilterRemainingAirportNames(List<Hotel> hotels)
+    {
         var remainingAirportNames = new List<string>();
 
-        foreach(var hotel in remainingHotels)
+        foreach(var hotel in hotels)
         {
             foreach (var airport in hotel.LocalAirports)
             {
@@ -23,11 +35,6 @@ public class DurationFilter : IFilter<HolidaySearchRequest>
             }
         }
 
-        var remainingFlights = input.FlightData.Where(flight => remainingAirportNames.Contains(flight.To)).ToList();
-
-        input.HotelData = remainingHotels;
-        input.FlightData = remainingFlights;
-
-        return input;
+        return remainingAirportNames;
     }
 }
